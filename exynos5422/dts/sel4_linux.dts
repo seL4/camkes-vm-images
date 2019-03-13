@@ -3271,7 +3271,7 @@
 
 	chosen {
 		stdout-path = "serial2:115200n8";
-		bootargs = "console=ttySAC2,115200n8 root=/dev/mem nosmp rw debug loglevel=7 earlyprintk=serial pci=nomsi text";
+		bootargs = "console=ttySAC2,115200n8 root=/dev/ram0 nosmp rw debug loglevel=7 earlyprintk=serial pci=nomsi";
 		linux,stdout-path = "serial2:115200n8";
     };
 
