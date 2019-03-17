@@ -1,0 +1,47 @@
+From a2d00eae7c118ffd435296d3da64e2159664f274 Mon Sep 17 00:00:00 2001
+From: Kofi Doku Atuah <kofidoku.atuah@data61.csiro.au>
+Date: Mon, 18 Mar 2019 10:30:38 +1100
+Subject: [PATCH 3/3] seL4: Fix compilation errors in the published L4T source
+
+---
+ include/linux/regulator/consumer.h | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/include/linux/regulator/consumer.h b/include/linux/regulator/consumer.h
+index cbea0a6b..8d6d19e7 100644
+--- a/include/linux/regulator/consumer.h
++++ b/include/linux/regulator/consumer.h
+@@ -509,7 +509,7 @@ static inline int regulator_get_current_limit(struct regulator *regulator)
+ 	return 0;
+ }
+ 
+-static inline int regulator_can_set_mode(struct regulator *regulator);
++static inline int regulator_can_set_mode(struct regulator *regulator)
+ {
+ 	return 0;
+ }
+@@ -525,7 +525,7 @@ static inline unsigned int regulator_get_mode(struct regulator *regulator)
+ 	return REGULATOR_MODE_NORMAL;
+ }
+ 
+-static inline int regulator_set_vsel_volatile(struct regulator *regulator, bool is_volatile);
++static inline int regulator_set_vsel_volatile(struct regulator *regulator, bool is_volatile)
+ {
+ 	return REGULATOR_MODE_NORMAL;
+ }
+@@ -535,12 +535,6 @@ static inline int regulator_set_load(struct regulator *regulator, int load_uA)
+ 	return REGULATOR_MODE_NORMAL;
+ }
+ 
+-static inline int regulator_set_vsel_volatile(struct regulator *regulator,
+-					      bool is_volatile)
+-{
+-	return 0;
+-}
+-
+ static inline int regulator_allow_bypass(struct regulator *regulator,
+ 					 bool allow)
+ {
+-- 
+2.17.1
+

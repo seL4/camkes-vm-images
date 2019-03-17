@@ -1,0 +1,28 @@
+From 606633b11509379412d4c416f691e90862d77832 Mon Sep 17 00:00:00 2001
+From: Kofi Doku Atuah <kofidoku.atuah@data61.csiro.au>
+Date: Mon, 18 Mar 2019 10:29:29 +1100
+Subject: [PATCH 2/3] seL4: Add this printk for progress metering during boot
+
+* This printk makes it more bearable for the user to wait for the long
+  delays introduced by the calls to the BPMP firmware. Without this
+  the user may be led to think the kernel has frozen.
+---
+ drivers/firmware/tegra/mail.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/firmware/tegra/mail.c b/drivers/firmware/tegra/mail.c
+index 1520104a..41a3c759 100644
+--- a/drivers/firmware/tegra/mail.c
++++ b/drivers/firmware/tegra/mail.c
+@@ -404,6 +404,8 @@ int tegra_bpmp_send_receive(int mrq, void *ob_data, int ob_sz,
+ 	if (mail_ops->ring_doorbell)
+ 		mail_ops->ring_doorbell(ch);
+ 
++
++	printk("Calling BPMP interface...\n");
+ 	r = bpmp_trywait(ch, mrq, ob_data, ob_sz);
+ 	if (r)
+ 		return r;
+-- 
+2.17.1
+
