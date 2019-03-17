@@ -31,3 +31,8 @@ There is a bit of context to keep in mind when trying to handle this port:
     - I did not bother to test to see whether or not Jetpack v4.1.1 can support
       the TX2, but if you feel like doing so in order to get the 4.8 kernel,
       then feel free to do so.
+
+* Some patches are included in here which should be applied to the L4T
+  (Linux 4.4) source folder directly to make it compile and work on
+  CAmkES-ARM-VMM.
+
