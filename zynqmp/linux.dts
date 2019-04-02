@@ -1,0 +1,163 @@
+/dts-v1/;
+
+/ {
+	compatible = "xlnx,zynqmp-zcu102-rev1.0", "xlnx,zynqmp-zcu102", "xlnx,zynqmp";
+	#address-cells = <0x2>;
+	#size-cells = <0x2>;
+	model = "ZynqMP ZCU102 Rev1.0";
+
+	cpus {
+		#address-cells = <0x1>;
+		#size-cells = <0x0>;
+
+		cpu@0 {
+			compatible = "arm,cortex-a53", "arm,armv8";
+			device_type = "cpu";
+			enable-method = "psci";
+			operating-points-v2 = <0x1>;
+			reg = <0x0>;
+			cpu-idle-states = <0x2>;
+			clocks = <0x3 0xa>;
+		};
+	};
+
+	power-domains {
+		compatible = "xlnx,zynqmp-genpd";
+
+		pd-uart1 {
+			#power-domain-cells = <0x0>;
+			pd-id = <0x22>;
+			linux,phandle = <0x36>;
+			phandle = <0x36>;
+		};
+	};
+
+	pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupt-parent = <0x4>;
+		interrupts = <0x0 0x8f 0x4 0x0 0x90 0x4 0x0 0x91 0x4 0x0 0x92 0x4>;
+	};
+
+	firmware {
+		compatible = "xlnx,zynqmp-pm";
+		method = "smc";
+		interrupt-parent = <0x4>;
+		interrupts = <0x0 0x23 0x4>;
+	};
+
+	timer {
+		compatible = "arm,armv8-timer";
+		interrupt-parent = <0x4>;
+		interrupts = <0x1 0xd 0xf08 0x1 0xe 0xf08 0x1 0xb 0xf08 0x1 0xa 0xf08>;
+	};
+
+	amba_apu@0 {
+		compatible = "simple-bus";
+		#address-cells = <0x2>;
+		#size-cells = <0x1>;
+		ranges = <0x0 0x0 0x0 0x0 0xffffffff>;
+
+		interrupt-controller@f9010000 {
+			compatible = "arm,gic-400", "arm,cortex-a15-gic";
+			#interrupt-cells = <0x3>;
+			reg = <0x0 0xf9010000 0x1000 0x0 0xf9020000 0x2000>;
+			interrupt-controller;
+			interrupt-parent = <0x4>;
+			interrupts = <0x1 0x9 0xf04>;
+			linux,phandle = <0x4>;
+			phandle = <0x4>;
+		};
+	};
+
+	amba {
+		compatible = "simple-bus";
+		u-boot,dm-pre-reloc;
+		#address-cells = <0x2>;
+		#size-cells = <0x2>;
+		ranges;
+
+		serial@ff010000 {
+			u-boot,dm-pre-reloc;
+			compatible = "cdns,uart-r1p12", "xlnx,xuartps";
+			status = "okay";
+			interrupt-parent = <0x4>;
+			interrupts = <0x0 0x16 0x4>;
+			reg = <0x0 0xff010000 0x0 0x1000>;
+			clock-names = "uart_clk", "pclk";
+			power-domains = <0x36>;
+			clocks = <0x3 0x39 0x3 0x1f>;
+			device_type = "serial";
+			port-number = <0x1>;
+		};
+	};
+
+	pss_ref_clk {
+		u-boot,dm-pre-reloc;
+		compatible = "fixed-clock";
+		#clock-cells = <0x0>;
+		clock-frequency = <0x1fc9350>;
+		linux,phandle = <0x3f>;
+		phandle = <0x3f>;
+	};
+
+	video_clk {
+		u-boot,dm-pre-reloc;
+		compatible = "fixed-clock";
+		#clock-cells = <0x0>;
+		clock-frequency = <0x19bfcc0>;
+		linux,phandle = <0x40>;
+		phandle = <0x40>;
+	};
+
+	pss_alt_ref_clk {
+		u-boot,dm-pre-reloc;
+		compatible = "fixed-clock";
+		#clock-cells = <0x0>;
+		clock-frequency = <0x0>;
+		linux,phandle = <0x41>;
+		phandle = <0x41>;
+	};
+
+	gt_crx_ref_clk {
+		u-boot,dm-pre-reloc;
+		compatible = "fixed-clock";
+		#clock-cells = <0x0>;
+		clock-frequency = <0x66ff300>;
+		linux,phandle = <0x43>;
+		phandle = <0x43>;
+	};
+
+	aux_ref_clk {
+		u-boot,dm-pre-reloc;
+		compatible = "fixed-clock";
+		#clock-cells = <0x0>;
+		clock-frequency = <0x19bfcc0>;
+		linux,phandle = <0x42>;
+		phandle = <0x42>;
+	};
+
+	clkc {
+		u-boot,dm-pre-reloc;
+		#clock-cells = <0x1>;
+		compatible = "xlnx,zynqmp-clkc";
+		clocks = <0x3f 0x40 0x41 0x42 0x43>;
+		clock-names = "pss_ref_clk", "video_clk", "pss_alt_ref_clk", "aux_ref_clk", "gt_crx_ref_clk";
+		clock-output-names = "iopll", "rpll", "apll", "dpll", "vpll", "iopll_to_fpd", "rpll_to_fpd", "apll_to_lpd", "dpll_to_lpd", "vpll_to_lpd", "acpu", "acpu_half", "dbf_fpd", "dbf_lpd", "dbg_trace", "dbg_tstmp", "dp_video_ref", "dp_audio_ref", "dp_stc_ref", "gdma_ref", "dpdma_ref", "ddr_ref", "sata_ref", "pcie_ref", "gpu_ref", "gpu_pp0_ref", "gpu_pp1_ref", "topsw_main", "topsw_lsbus", "gtgref0_ref", "lpd_switch", "lpd_lsbus", "usb0_bus_ref", "usb1_bus_ref", "usb3_dual_ref", "usb0", "usb1", "cpu_r5", "cpu_r5_core", "csu_spb", "csu_pll", "pcap", "iou_switch", "gem_tsu_ref", "gem_tsu", "gem0_ref", "gem1_ref", "gem2_ref", "gem3_ref", "gem0_tx", "gem1_tx", "gem2_tx", "gem3_tx", "qspi_ref", "sdio0_ref", "sdio1_ref", "uart0_ref", "uart1_ref", "spi0_ref", "spi1_ref", "nand_ref", "i2c0_ref", "i2c1_ref", "can0_ref", "can1_ref", "can0", "can1", "dll_ref", "adma_ref", "timestamp_ref", "ams_ref", "pl0", "pl1", "pl2", "pl3", "wdt";
+		linux,phandle = <0x3>;
+		phandle = <0x3>;
+	};
+
+	chosen {
+		bootargs = "console=ttyPS1,115200 root=/dev/ram rw earlycon clk_ignore_unused maxcpus=0";
+		stdout-path = "serial1:115200n8";
+	};
+
+	aliases {
+		serial1 = "/amba/serial@ff010000";
+	};
+
+	memory {
+		device_type = "memory";
+		reg = <0x00000008 0x00000000 0x0 0x10000000>;
+	};
+};
