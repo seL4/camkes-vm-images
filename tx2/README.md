@@ -36,3 +36,20 @@ There is a bit of context to keep in mind when trying to handle this port:
   (Linux 4.4) source folder directly to make it compile and work on
   CAmkES-ARM-VMM.
 
+## Compilation details:
+### Linux image
+* File: linux
+* Kernel Source: L4T Kernel (based on upstream kernel 4.4) extracted from Jetpack v3.3 SDK
+* SDK URL: https://developer.nvidia.com/embedded/jetpack-3\_3
+* Linux Config: Configuration used can be found in 'linux-4.4-kconfig.config'
+* Compiled with: aarch64-linux-gnu-gcc (gcc version 6.3.0)
+* Notes: Patches applied to L4T Kernel, these being:
+    *0001-seL4-Disable-SMC-calls-to-firmware.patch
+    *0002-seL4-Add-this-printk-for-progress-metering-during-bo.patch
+    *0003-seL4-Fix-compilation-errors-in-the-published-L4T-sou.patch
+
+### Buildroot Rootfs image
+* File: rootfs.cpio.gz
+* Version: 2018.11.2 (https://buildroot.org/downloads/buildroot-2018.11.2.tar.gz)
+* Buildroot Config: Configuration used can be found in 'buildroot-v2018.11.02-kconfig.config'
+* Compiled with: aarch64-linux-gnu-gcc (gcc version 6.3.0)
