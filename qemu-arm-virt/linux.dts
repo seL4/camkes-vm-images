@@ -78,10 +78,10 @@
 		#clock-cells = <0x0>;
 		compatible = "fixed-clock";
 	};
-    
+
 	chosen {
 		stdout-path = "/pl011@9000000";
-		bootargs = "";
+		bootargs = "earlycon=pl011,0x9000000 earlyprintk=serial debug loglevel=8";
 		linux,stdout-path = "/pl011@9000000";
     };
 };
