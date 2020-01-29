@@ -7334,7 +7334,6 @@
 		phandle = <0x60>;
 	};
 
-/*
 	psci {
 		compatible = "arm,psci-1.0";
 		method = "smc";
@@ -7343,7 +7342,6 @@
 		cpu_suspend = <0xc4000001>;
 		status = "okay";
 	};
-*/
 
 	interrupt-controller@3881000 {
 		compatible = "arm,cortex-a15-gic";
@@ -13463,7 +13461,7 @@
 
 	chosen {
 		board-has-eeprom;
-		bootargs = "console=ttyS0,115200n1 no_console_suspend=1 earlycon=uart8250,mmio32,0x03100000 debug nosmp init=/sbin/init";
+		bootargs = "console=ttyS0,115200n1 no_console_suspend=1 earlycon=uart8250,mmio32,0x03100000 debug nr_cpus=4 maxcpus=4 init=/init";
 		stdout-path = "/serial@3100000";
 	};
 
