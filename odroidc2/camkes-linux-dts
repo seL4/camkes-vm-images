@@ -1,0 +1,175 @@
+/*
+ * AMLogic's S905 based ODROID-C2 board device tree source
+ *
+ * Copyright (c) 2015 Hardkernel Co., Ltd.
+ *                    http://www.hardkernel.com
+ *
+ * Device tree source file for Hardkernel's ODROID-C2 board based on AMLogic's
+ * S905 SoC.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/ {
+cpus:cpus {
+         #address-cells = <2>;
+         #size-cells = <0>;
+         #cooling-cells = <2>;
+         cpu@0 {
+             device_type = "cpu";
+             compatible = "arm,cortex-a53","arm,armv8";
+             reg = <0x0 0x0>;
+             enable-method = "psci";
+             /* timer=<&timer_f>; */
+         };
+     };
+
+     timer {
+         compatible = "arm,armv8-timer";
+         interrupts = <1 13 0xff01>,
+                    <1 14 0xff01>,
+                    <1 11 0xff01>,
+                    <1 10 0xff01>;
+     };
+
+gic: interrupt-controller@c4301000{
+         compatible = "arm,gic-400", "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+         #interrupt-cells = <3>;
+         #address-cells = <0>;
+         interrupt-controller;
+         reg = <0x0 0xc4301000 0 0x1000>,
+             <0x0 0xc4302000 0 0x2000>,
+             <0x0 0xc4304000 0 0x2000>,
+             <0x0 0xc4306000 0 0x2000>;
+         interrupts = <1 9 0xf04>;
+     };
+
+clock: meson_clock {
+           compatible = "amlogic, gxbb-clock";
+           reg = <0x0 0xc883c000 0x0 0x1000>,
+               <0x0 0xc8100000 0x0 0x1000>;
+           #clock-cells = <1>;
+           #reset-cells = <1>;
+           sys_max = <1536000000>;
+       };
+
+ethmac: ethernet@c9410000 {
+            compatible = "amlogic, gxbb-rgmii-dwmac";
+            reg = <0x0 0xc9410000 0x0 0x10000
+                0x0 0xc8834540 0x0 0x8>;
+            interrupts = <0 8 1>;
+            phy-mode= "rgmii";
+            /* pinctrl-names = "eth_pins"; */
+            /* pinctrl-0 = <&eth_pins>; */
+            /* rst_pin-gpios = <&gpio 14 0>; */
+            mc_val = <0x1621>;
+            resets = <&clock 35>;
+            reset-names = "ethpower";
+            interrupt-names = "macirq";
+            clocks = <&clock 10>;
+            clock-names = "ethclk81";
+            max-frame-size = <3582>;
+        };
+
+        cpu_version{
+            reg=<0x0 0xc8100220 0x0 0x4>;
+        };
+};
+
+/ {
+    compatible = "amlogic, Gxbb";
+    model = "ODROID-C2";
+    interrupt-parent = <&gic>;
+    #address-cells = <2>;
+    #size-cells = <2>;
+
+    aliases {
+        serial0 = &uart_AO;
+
+    };
+    memory {
+        reg = <0x00000000 0x20000000 0x00000000 0x10000000>;
+        device_type = "memory";
+    };
+    ge2d {
+        compatible = "amlogic, ge2d";
+        dev_name = "ge2d";
+        status = "okay";
+        interrupts = <0 150 1>;
+        interrupt-names = "ge2d";
+        clocks = <&clock 23>,
+               <&clock 25>;
+        clock-names = "clk_vapb_0",
+            "clk_ge2d";
+        resets = <&clock 52>;
+        reset-names = "ge2d";
+    };
+
+    codec_io {
+        compatible = "amlogic, nnincodec_io";
+        #address-cells=<2>;
+        #size-cells=<2>;
+        ranges;
+        io_cbus_base{
+            reg = <0x0 0xC1100000 0x0 0x100000>;
+        };
+        io_dos_base{
+            reg = <0x0 0xc8820000 0x0 0x10000>;
+        };
+        io_hiubus_base{
+            reg = <0x0 0xc883c000 0x0 0x2000>;
+        };
+        io_aobus_base{
+            reg = <0x0 0xc8100000 0x0 0x100000>;
+        };
+        io_vcbus_base{
+            reg = <0x0 0xd0100000 0x0 0x40000>;
+        };
+        io_dmc_base{
+            reg = <0x0 0xc8838000 0x0 0x400>;
+        };
+    };
+    vdec {
+        compatible = "amlogic, vdec";
+        dev_name = "vdec.0";
+        status = "okay";
+        interrupts = <0 3 1
+            0 23 1
+            0 32 1
+            0 43 1
+            0 44 1
+            0 45 1>;
+        interrupt-names = "vsync",
+            "demux",
+            "parser",
+            "mailbox_0",
+            "mailbox_1",
+            "mailbox_2";
+    };
+    vpu {
+        compatible = "amlogic, vpu";
+        dev_name = "vpu";
+        status = "ok";
+        clk_level = <7>;
+    };
+uart_AO: serial@c81004c0 {
+             compatible = "amlogic,meson-uart";
+             reg = <0x0 0xc81004c0 0x0 0x14>;
+             interrupts = <0 193 1>;
+             status = "okay";
+             clocks = <&clock 2>;
+             clock-names = "clk_uart";
+             fifosize = < 64 >;
+         };
+
+         chosen {
+             linux,initrd-end = <0x00000000 0x2e327679>;
+             linux,initrd-start = <0x00000000 0x2d700000>;
+             bootargs = "console=ttyS0,115200n8 console=ttyAML0,115200 console=tty0 console=ttyS1,115200n8 console=ttyS2,115200n8 root=/dev/ram0 nosmp rw debug loglevel=8 pci=nomsi earlyprintk=serial maxcpus=1";
+             linux,stdout-path = "serial0:115200n8";
+             stdout-path = "serial0:115200n8";
+         };
+};

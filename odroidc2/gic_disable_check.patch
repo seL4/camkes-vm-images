@@ -1,0 +1,30 @@
+diff --git a/drivers/irqchip/irq-gic-common.c b/drivers/irqchip/irq-gic-common.c
+index 01e673c680cd..a2992e4735cf 100644
+--- a/drivers/irqchip/irq-gic-common.c
++++ b/drivers/irqchip/irq-gic-common.c
+@@ -83,13 +83,18 @@ int gic_configure_irq(unsigned int irq, unsigned int type,
+ 	 * non-secure mode, and hence it may not be catastrophic.
+ 	 */
+ 	writel_relaxed(val, base + GIC_DIST_CONFIG + confoff);
+-	if (readl_relaxed(base + GIC_DIST_CONFIG + confoff) != val) {
+-		if (WARN_ON(irq >= 32))
+-			ret = -EINVAL;
+-		else
+-			pr_warn("GIC: PPI%d is secure or misconfigured\n",
+-				irq - 16);
+-	}
++    // NOTE: older linux kernel doesn check if we read back the same
++    // value that we just wrote, our vgic implementation doesn't seems
++    // to support this
++	/* if (readl_relaxed(base + GIC_DIST_CONFIG + confoff) != val) { */
++	/* 	if (WARN_ON(irq >= 32)) { */
++    /*         printk("gic: didn't get the config val we wrote!\n"); */
++	/* 		ret = -EINVAL; */
++    /*     } */
++	/* 	else */
++	/* 		pr_warn("GIC: PPI%d is secure or misconfigured\n", */
++	/* 			irq - 16); */
++	/* } */
+ 	raw_spin_unlock_irqrestore(&irq_controller_lock, flags);
+ 
+ 	if (sync_access)
