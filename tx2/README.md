@@ -39,10 +39,12 @@ There is a bit of context to keep in mind when trying to handle this port:
 ## Compilation details:
 ### Linux image
 * File: linux
-* Kernel Source: L4T Kernel (based on upstream kernel 4.4) extracted from Jetpack v3.3 SDK
+* Kernel Source: L4T Kernel (based on upstream kernel 4.4) extracted from Jetpack v3.3 SDK,
+downloaded from https://developer.nvidia.com/embedded/dlc/sources-r2821
 * SDK URL: https://developer.nvidia.com/embedded/jetpack-3\_3
 * Linux Config: Configuration used can be found in 'linux-4.4-kconfig.config'
-* Compiled with: aarch64-linux-gnu-gcc (gcc version 6.3.0)
+* Compiled with: aarch64-linux-gnu-gcc (gcc version 9.3.0)
+* gcc flags applied: KCFLAGS=-Wno-attributes -Wno-stringop-overflow -Wno-attribute-alias -Wno-int-in-bool-context -Wno-format-overflow
 * Notes: Patches applied to L4T Kernel, these being:
     *0001-seL4-Disable-SMC-calls-to-firmware.patch
     *0002-seL4-Add-this-printk-for-progress-metering-during-bo.patch

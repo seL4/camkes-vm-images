@@ -4248,7 +4248,7 @@
 		reset-names = "eqos_rst";
 		#stream-id-cells = <0x1>;
 		phy-mode = "rgmii";
-		status = "okay";
+		status = "disabled";
 		nvidia,ptp_ref_clock_speed = <0x7d>;
 		nvidia,rxq_enable_ctrl = <0x2 0x2 0x2 0x2>;
 		nvidia,queue_prio = <0x0 0x1 0x2 0x3>;
@@ -13477,26 +13477,4 @@
 		device_type = "memory";
 		reg = <0x0 0xF1000000 0x0 0x8000000>;
 	};
-
-    pci {
-        compatible = "pci-host-cam-generic";
-        device_type = "pci";
-        #address-cells = <0x3>;
-        #size-cells =  <0x2>;
-        bus-range = <0x0 0x1>;
-        dma-coherent;
-        #interrupt-cells = <0x1>;
-
-        reg = <0x3 0xee000000 0x0 0x1000000>;
-        ranges = <0x01000000 0x0 0x00000000 0x3 0xed000000 0x0 0x00010000>,
-                 <0x02000000 0x3 0xef000000 0x3 0xef000000 0x0 0x1000000>;
-
-        interrupt-map = <0x800 0 0 1 0x1 0  220  4
-						 0x800 0 0 2 0x1 0  221  4
-						 0x800 0 0 3 0x1 0  222  4
-						 0x800 0 0 4 0x1 0  227  4>;
-
-        interrupt-map-mask = <0x0000f800 0x00000000 0x00000000 0x00000007>;
-    };
-
 };
