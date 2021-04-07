@@ -246,6 +246,7 @@
 			peripherals-req-type-burst;
 			clocks = <0x07 0xc2>;
 			clock-names = "apb_pclk";
+			status = "disabled";
 			phandle = <0x28>;
 		};
 
@@ -271,6 +272,7 @@
 			peripherals-req-type-burst;
 			clocks = <0x07 0xc1>;
 			clock-names = "apb_pclk";
+			status = "disabled";
 			phandle = <0x73>;
 		};
 	};
@@ -380,7 +382,7 @@
 		fifo-depth = <0x100>;
 		interrupts = <0x00 0x20 0x04>;
 		reg = <0x00 0xff0c0000 0x00 0x4000>;
-		status = "disabled";
+		status = "okay";
 		supports-sd;
 		bus-width = <0x04>;
 		cap-mmc-highspeed;
@@ -444,7 +446,7 @@
 		fifo-depth = <0x100>;
 		interrupts = <0x00 0x23 0x04>;
 		reg = <0x00 0xff0f0000 0x00 0x4000>;
-		status = "disabled";
+		status = "okay";
 		supports-emmc;
 		bus-width = <0x08>;
 		cap-mmc-highspeed;
@@ -1141,7 +1143,7 @@
 		dr_mode = "host";
 		phys = <0x54>;
 		phy-names = "usb2-phy";
-		status = "disabled";
+		status = "okay";
 		phandle = <0xe4>;
 	};
 
@@ -1158,7 +1160,7 @@
 		g-use-dma;
 		phys = <0x55>;
 		phy-names = "usb2-phy";
-		status = "disabled";
+		status = "okay";
 		resets = <0x07 0x84 0x07 0x85 0x07 0x86>;
 		reset-names = "otg_ahb\0otg_phy\0otg_controller";
 		rockchip,usb-mode = <0x00>;
