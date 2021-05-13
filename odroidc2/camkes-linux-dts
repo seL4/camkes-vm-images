@@ -12,6 +12,8 @@
  * published by the Free Software Foundation.
  */
 
+// SPDX-License-Identifier: GPL-2.0-or-later
+
 /dts-v1/;
 / {
 cpus:cpus {
