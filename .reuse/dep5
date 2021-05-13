@@ -1,0 +1,38 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: seL4
+Upstream-Contact: seL4 team <seL4@sel4.systems>
+Source: http://sel4.systems
+
+Files:
+  */*.cpio.gz
+  exynos5422/linux
+  exynos5422/linux_configs/Module.symvers
+  odroidc2/linux
+  odroidc2/linux_crossvm-dtb
+  qemu-arm-virt/linux
+  qemu-arm-virt/linux-initrd
+  tx1/linux
+  tx2/linux
+  tx2/linux-ethernet-dtb
+  tx2/linux-pci-dtb
+  exynos5422/minimal-linux-dtb
+  odroidc2/camkes-linux-dtb
+  tx2/connection.ko
+Copyright: Linux
+License: GPL-2.0-or-later
+
+Files:
+  exynos5422/linux_configs/config
+  odroidc2/linux-config
+  qemu-arm-virt/linux_configs/Module.symvers
+  qemu-arm-virt/linux_configs/config
+  odroidc2/buildroot/buildroot-config
+  odroidc2/gic_disable_check.patch
+  tx1/linux_configs/config
+  tx2/buildroot-v2018.11.02-kconfig.config
+  tx2/linux-4.4-kconfig.config
+  tx2/0001-seL4-Disable-SMC-calls-to-firmware.patch
+  tx2/0002-seL4-Add-this-printk-for-progress-metering-during-bo.patch
+  tx2/0003-seL4-Fix-compilation-errors-in-the-published-L4T-sou.patch
+Copyright: Data61, CSIRO
+License: GPL-2.0-or-later
