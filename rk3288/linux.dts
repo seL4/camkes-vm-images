@@ -915,7 +915,7 @@
 		clocks = <0x07 0x150>;
 		pinctrl-names = "default";
 		pinctrl-0 = <0x45>;
-		status = "disabled";
+		status = "okay";
 		clock-frequency = <0x61a80>;
 		phandle = <0xd4>;
 
@@ -2346,42 +2346,49 @@
 	nocp-core@ffac0400 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac0400 0x00 0x400>;
+		status = "disabled";
 		phandle = <0x110>;
 	};
 
 	nocp-gpu@ffac0800 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac0800 0x00 0x400>;
+		status = "disabled";
 		phandle = <0x111>;
 	};
 
 	nocp-peri@ffac0c00 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac0c00 0x00 0x400>;
+		status = "disabled";
 		phandle = <0x112>;
 	};
 
 	nocp-vpu@ffac1000 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1000 0x00 0x400>;
+		status = "disabled";
 		phandle = <0x113>;
 	};
 
 	nocp-vio0@ffac1400 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1400 0x00 0x400>;
+		status = "disabled";
 		phandle = <0x114>;
 	};
 
 	nocp-vio1@ffac1800 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1800 0x00 0x400>;
+		status = "disabled";
 		phandle = <0x115>;
 	};
 
 	nocp-vio2@ffac1c00 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1c00 0x00 0x400>;
+		status = "disabled";
 		phandle = <0x116>;
 	};
 
