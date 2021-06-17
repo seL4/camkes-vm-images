@@ -37,7 +37,7 @@
 
 	memory {
 		device_type = "memory";
-		reg = <0x00 0x41000000 0x00 0x40000000>;
+		reg = <0x00 0x00 0x00 0x80000000>;
 	};
 
 	arm-pmu {
@@ -246,7 +246,6 @@
 			peripherals-req-type-burst;
 			clocks = <0x07 0xc2>;
 			clock-names = "apb_pclk";
-			status = "disabled";
 			phandle = <0x28>;
 		};
 
@@ -272,7 +271,6 @@
 			peripherals-req-type-burst;
 			clocks = <0x07 0xc1>;
 			clock-names = "apb_pclk";
-			status = "disabled";
 			phandle = <0x73>;
 		};
 	};
@@ -409,7 +407,7 @@
 		fifo-depth = <0x100>;
 		interrupts = <0x00 0x21 0x04>;
 		reg = <0x00 0xff0d0000 0x00 0x4000>;
-		status = "disabled";
+		status = "okay";
 		max-frequency = <0x8f0d180>;
 		bus-width = <0x04>;
 		cap-sd-highspeed;
@@ -470,7 +468,7 @@
 		clock-names = "saradc\0apb_pclk";
 		resets = <0x07 0x57>;
 		reset-names = "saradc-apb";
-		status = "disabled";
+		status = "okay";
 		vref-supply = <0x27>;
 		phandle = <0xac>;
 	};
@@ -519,7 +517,7 @@
 		reg = <0x00 0xff130000 0x00 0x1000>;
 		#address-cells = <0x01>;
 		#size-cells = <0x00>;
-		status = "disabled";
+		status = "okay";
 		phandle = <0xc6>;
 
 		spidev@0 {
@@ -857,7 +855,7 @@
 		clocks = <0x07 0x14d>;
 		pinctrl-names = "default";
 		pinctrl-0 = <0x3e>;
-		status = "disabled";
+		status = "okay";
 		clock-frequency = <0x61a80>;
 		phandle = <0xd1>;
 	};
@@ -872,7 +870,7 @@
 		clocks = <0x07 0x14f>;
 		pinctrl-names = "default";
 		pinctrl-0 = <0x3f>;
-		status = "disabled";
+		status = "okay";
 		clock-frequency = <0x61a80>;
 		phandle = <0xd2>;
 
@@ -956,7 +954,7 @@
 		clock-names = "baudclk\0apb_pclk";
 		pinctrl-names = "default";
 		pinctrl-0 = <0x48 0x49>;
-		status = "disabled";
+		status = "okay";
 		phandle = <0xd7>;
 	};
 
@@ -970,7 +968,7 @@
 		clock-names = "baudclk\0apb_pclk";
 		pinctrl-names = "default";
 		pinctrl-0 = <0x4a>;
-		status = "disabled";
+		status = "okay";
 		phandle = <0xd8>;
 	};
 
@@ -1117,7 +1115,7 @@
 		clock-names = "usbhost\0utmi";
 		phys = <0x53>;
 		phy-names = "usb";
-		status = "disabled";
+		status = "okay";
 		rockchip-relinquish-port;
 		phandle = <0xe2>;
 	};
@@ -1130,7 +1128,7 @@
 		clock-names = "usbhost\0utmi";
 		phys = <0x53>;
 		phy-names = "usb";
-		status = "disabled";
+		status = "okay";
 		phandle = <0xe3>;
 	};
 
@@ -2346,49 +2344,42 @@
 	nocp-core@ffac0400 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac0400 0x00 0x400>;
-		status = "disabled";
 		phandle = <0x110>;
 	};
 
 	nocp-gpu@ffac0800 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac0800 0x00 0x400>;
-		status = "disabled";
 		phandle = <0x111>;
 	};
 
 	nocp-peri@ffac0c00 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac0c00 0x00 0x400>;
-		status = "disabled";
 		phandle = <0x112>;
 	};
 
 	nocp-vpu@ffac1000 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1000 0x00 0x400>;
-		status = "disabled";
 		phandle = <0x113>;
 	};
 
 	nocp-vio0@ffac1400 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1400 0x00 0x400>;
-		status = "disabled";
 		phandle = <0x114>;
 	};
 
 	nocp-vio1@ffac1800 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1800 0x00 0x400>;
-		status = "disabled";
 		phandle = <0x115>;
 	};
 
 	nocp-vio2@ffac1c00 {
 		compatible = "rockchip,rk3288-nocp";
 		reg = <0x00 0xffac1c00 0x00 0x400>;
-		status = "disabled";
 		phandle = <0x116>;
 	};
 
@@ -3355,7 +3346,6 @@
 		ftrace-size = <0x00 0x00>;
 		pmsg-size = <0x00 0x50000>;
 		memory-region = <0xaa>;
-		status = "disabled";
 	};
 
 	fiq-debugger {
