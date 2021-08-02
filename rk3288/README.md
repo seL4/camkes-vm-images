@@ -20,6 +20,7 @@ ls build/rk3288/release/bl32.elf
 ```bash
 git clone https://github.com/szhuang/u-boot.git
 cd u-boot
+git checkout ntablet-nextdev_gcc10
 cp $(ATF)/build/rk3288/release/bl32.elf bl31.elf
 make rk3288-ntablet-870a_defconfig
 make CROSS_COMPILE=arm-linux-gnueabihf- -j4 idbloader.img
