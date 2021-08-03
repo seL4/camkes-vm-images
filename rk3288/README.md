@@ -25,6 +25,7 @@ cp $(ATF)/build/rk3288/release/bl32.elf bl31.elf
 make rk3288-ntablet-870a_defconfig
 make CROSS_COMPILE=arm-linux-gnueabihf- -j4 idbloader.img
 make CROSS_COMPILE=arm-linux-gnueabihf- -j4 all
+make CROSS_COMPILE=arm-linux-gnueabihf- -j4 u-boot.its
 
 # Open u-boot.its, remove the atf@2 node and atf@3 node
 ./tools/mkimage -f u-boot.its -E u-boot.itb
