@@ -18,6 +18,7 @@ Files:
   exynos5422/minimal-linux-dtb
   odroidc2/camkes-linux-dtb
   tx2/connection.ko
+  zynqmp/2018_3/linux
   zynqmp/2021_1/linux
 Copyright: Linux
 License: GPL-2.0-or-later
@@ -39,6 +40,7 @@ Copyright: Data61, CSIRO
 License: GPL-2.0-or-later
 
 Files:
+  zynqmp/linux_configs/2018_3/config
   zynqmp/linux_configs/2021_1/config
 Copyright: DornerWorks
 License: GPL-2.0-or-later
