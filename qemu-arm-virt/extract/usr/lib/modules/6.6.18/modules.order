@@ -1,7 +1,0 @@
-kernel/crypto/crypto_engine.ko
-kernel/crypto/ecb.ko
-kernel/crypto/cbc.ko
-kernel/drivers/pci/controller/dwc/pci-meson.ko
-kernel/drivers/xen/xen-pciback/xen-pciback.ko
-kernel/drivers/rtc/rtc-meson-vrtc.ko
-kernel/drivers/crypto/amlogic/amlogic-gxl-crypto.ko
