@@ -10,6 +10,7 @@ Files:
   odroidc2/linux
   odroidc2/linux_crossvm-dtb
   qemu-arm-virt/linux
+  rpi4/linux
   qemu-arm-virt/linux-initrd
   tx1/linux
   tx2/linux
@@ -29,6 +30,8 @@ Files:
   odroidc2/linux-config
   qemu-arm-virt/linux_configs/Module.symvers
   qemu-arm-virt/linux_configs/config
+  rpi4/linux_configs/config
+  rpi4/buildroot_config
   odroidc2/buildroot/buildroot-config
   odroidc2/gic_disable_check.patch
   tx1/linux_configs/config
